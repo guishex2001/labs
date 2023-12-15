@@ -8,22 +8,22 @@ class VentanaIngresarDatos(tk.Toplevel):
         self.master = master
         self.title("Ingresar Datos")
 
+        self.tipo_datos_var = tk.StringVar()
+        self.tipo_datos_var.set("Cliente")  # Valor predeterminado
+
         # Widget de selección para elegir el tipo de datos
-        self.tipo_datos_label = tk.Label(self, text="Seleccionar tipo de datos:")
-        self.tipo_datos_combobox = ttk.Combobox(self, values=["Cliente", "Animal", "Análisis"])
-        self.tipo_datos_combobox.set("Cliente")  # Establecer el valor predeterminado
-        self.tipo_datos_label.pack(pady=5)
-        self.tipo_datos_combobox.pack(pady=5)
+        self.tipo_datos_combobox = ttk.Combobox(self, values=["Cliente", "Animal", "Análisis"], textvariable=self.tipo_datos_var)
+        self.tipo_datos_combobox.grid(row=0, column=0, padx=10, pady=10)
 
-        # Botón para iniciar la entrada de datos
-        self.ingresar_datos_button = tk.Button(self, text="Ingresar Datos", command=self.iniciar_ingreso_datos)
-        self.ingresar_datos_button.pack(pady=10)
+        # Botón para mostrar el formulario de ingreso de datos
+        self.mostrar_formulario_button = tk.Button(self, text="Mostrar Formulario", command=self.mostrar_formulario)
+        self.mostrar_formulario_button.grid(row=1, column=0, padx=10, pady=10)
 
-        self.controlador_ingresar_datos = ControladorIngresarDatos(self)
+    def mostrar_formulario(self):
+        tipo_datos = self.tipo_datos_var.get()
 
-    def iniciar_ingreso_datos(self):
-        tipo_datos = self.tipo_datos_combobox.get()
-        self.controlador_ingresar_datos.mostrar_ventana_ingreso_datos(tipo_datos)
+        # Crear instancia del controlador de ingreso de datos con el tipo seleccionado
+        controlador_ingresar_datos = ControladorIngresarDatos(self, tipo_datos)
 
 if __name__ == "__main__":
     root = tk.Tk()

@@ -1,13 +1,11 @@
-
-
 from tkinter import Tk, Toplevel, Label, Entry, Button, StringVar, messagebox
 from controllers.crud_operators import CRUDOperations
 
 class ControladorIngresarDatos:
-    def __init__(self, master):
+    def __init__(self, master, tipo_datos):
         self.master = master
         self.ventana_ingreso = Toplevel(master)
-        self.ventana_ingreso.title("Ingresar Datos de Cliente")
+        self.ventana_ingreso.title(f"Ingresar Datos de {tipo_datos}")
 
         self.nombre_var = StringVar()
         self.apellido_var = StringVar()
@@ -64,5 +62,6 @@ class ControladorIngresarDatos:
 
 if __name__ == "__main__":
     root = Tk()
-    app = ControladorIngresarDatos(root)
+    tipo_datos = "Cliente"  # Puedes cambiar el tipo de datos según lo que necesites
+    app = ControladorIngresarDatos(root, tipo_datos)
     root.mainloop()
