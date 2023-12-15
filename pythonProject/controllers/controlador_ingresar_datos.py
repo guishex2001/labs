@@ -2,7 +2,7 @@ from tkinter import Tk, Toplevel, Label, Entry, Button, StringVar, messagebox
 from controllers.crud_operators import CRUDOperations
 
 class ControladorIngresarDatos:
-    def __init__(self, master, tipo_datos):
+    def __init__(self, master, tipo_datos="Cliente"):  # Agrega un valor predeterminado
         self.master = master
         self.ventana_ingreso = Toplevel(master)
         self.ventana_ingreso.title(f"Ingresar Datos de {tipo_datos}")
